@@ -1,0 +1,30 @@
+<h2 id="原型链">原型链</h2>
+<p>JavaScript 中的每个对象都有一个内部私有的链接指向另一个对象，这个对象就是原对象的原型。这个原型对象也有自己的原型，直到对象的原型为 null 为止（也就是没有原型）。这种一级一级的链结构就称为原型链。</p>
+<h2 id="构造函数">构造函数</h2>
+<h3 id="构造函数解决的问题是模板化的创建对象">构造函数解决的问题是“模板化的创建对象”</h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">Person</span> (name,age){
+    <span class="kw">this</span>.<span class="fu">name</span> = name;
+    <span class="kw">this</span>.<span class="fu">age</span>  = age;
+}
+<span class="kw">var</span> a = <span class="kw">new</span> <span class="fu">Person</span>(<span class="st">&#39;pin&#39;</span>, <span class="dv">20</span>);
+<span class="kw">var</span> b = <span class="kw">new</span> <span class="fu">Person</span>(<span class="st">&#39;tang&#39;</span>,<span class="dv">20</span>);</code></pre>
+<h3 id="如果不使用构造函数这个创建就略显得复杂">如果不使用构造函数，这个创建就略显得复杂</h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> a = {};
+<span class="ot">a</span>.<span class="fu">name</span> = <span class="st">&#39;pin&#39;</span>;
+<span class="ot">a</span>.<span class="fu">age</span>  = <span class="dv">20</span>;
+
+<span class="kw">var</span> b = {};
+<span class="ot">b</span>.<span class="fu">name</span> = <span class="st">&#39;tang&#39;</span>;
+<span class="ot">b</span>.<span class="fu">age</span> = <span class="dv">20</span>;</code></pre>
+<h3 id="用new运算符实例化的时候相当于做了以下三个步骤">用new运算符实例化的时候，相当于做了以下三个步骤。</h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// 1. 创建一个空对象</span>
+<span class="kw">var</span> obj = {};
+<span class="co">// 2. 让构造函数中的this指向这个空对象</span>
+<span class="ot">Person</span>.<span class="fu">apply</span>(obj,arguments);
+<span class="co">// 3. 返回这个空对象</span>
+<span class="kw">return</span> obj;</code></pre>
+<h3 id="继承">继承</h3>
+<p>以上的分析并没有涉及到原型链，实际上new操作符还做了一件事：<code>让创建的这个空对象继承于构造函数的prototype</code> 上面代码中的第一步替换成</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> obj = <span class="ot">Object</span>.<span class="fu">create</span>(<span class="ot">Person</span>.<span class="fu">prototype</span>)</code></pre>
+<p>正因为这个继承，new运算符实例化出来的对象才可以调用到Person的prototype上的属性和方法。 那么，当我们在说继承的时候，我们在说什么呢。</p>
+<h2 id="继承-1">继承</h2>

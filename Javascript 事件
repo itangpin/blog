@@ -1,0 +1,6 @@
+## contenteditable
+要监测一个contenteditable元素里的内容是否发生了改变，我们无法使用change 事件，因为change事件仅对input元素或者textarea元素起作用。
+
+可以使用keyup事件替代，当然更好的方法是使用HTML5的input事件。
+
+## this
