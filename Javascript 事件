@@ -4,3 +4,6 @@
 可以使用keyup事件替代，当然更好的方法是使用HTML5的input事件。
 
 ## this
+el.addEventlistener('click',function(){
+	// 这里的this是
+});
