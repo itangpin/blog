@@ -41,16 +41,16 @@ obj.__proto__ = Person.prototype;
 ## 继承
 那么，当我们在说继承的时候，我们在说什么呢。
 
-### __proto__属性
-每个对象都有一个内部私有属性__proto__，这个属性指向该对象的原型。将对象obj的内部属性__proto__指向一个对象o，对象obj就继承了o的方法和属性。
-当我们调用obj.method1()时，js引擎会先在obj自己的属性里查找，如果没有找到method1方法，就会去他的__proto__属性所指向的对象里查找。
+### \_\_proto\_\_属性
+每个对象都有一个内部私有属性\_\_proto\_\_，这个属性指向该对象的原型。将对象obj的内部属性\_\_proto\_\_指向一个对象o，对象obj就继承了o的方法和属性。
+当我们调用obj.method1()时，js引擎会先在obj自己的属性里查找，如果没有找到method1方法，就会去他的\_\_proto\_\_属性所指向的对象里查找。
 
 ### 创建原型链的三种方式
 #### 构造函数
-new 操作是最常用的创建对象的方式之一，new 操作返回的对象的__proto__指向构造函数对象的prototype属性。
+new 操作是最常用的创建对象的方式之一，new 操作返回的对象的\_\_proto\_\_指向构造函数对象的prototype属性。
 new操作的作用实际上就是：
 1. 以创建的对象为context执行构造函数
-2. 将创建的对象obj的__proto__属性指向构造函数的prototype
+2. 将创建的对象obj的\_\_proto\_\_属性指向构造函数的prototype
 ````javascript
 var Person = function(){
     this.type = 'person';
